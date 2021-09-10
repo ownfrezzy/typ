@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
 
-const SocialNetworks = db.define("SocialNetworks", {
+const SocialNetworks = db.define("socialNetworks", {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -17,7 +17,7 @@ const SocialNetworks = db.define("SocialNetworks", {
     allowNull: false,
   },
   user_id: {
-    type: Sequelize.STRING,
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 });

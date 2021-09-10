@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
 
-const Themes = db.define("Themes", {
+const Themes = db.define("themes", {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,

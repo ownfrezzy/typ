@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
 
-const UsersModules = db.define("UsersModules", {
+const UsersModules = db.define("usersModules", {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -9,11 +9,11 @@ const UsersModules = db.define("UsersModules", {
     autoIncrement: true,
   },
   user_id: {
-    type: Sequelize.STRING,
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
   module_id: {
-    type: Sequelize.STRING,
+    type: Sequelize.INTEGER,
     allowNull: false,
   },
 });

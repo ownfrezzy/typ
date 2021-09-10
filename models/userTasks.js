@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
 
-const UserTask = db.define("tasks", {
+const UserTask = db.define("userTasks", {
   id: {
     type: Sequelize.INTEGER,
     allowNull: false,

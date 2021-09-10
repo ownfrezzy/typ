@@ -10,16 +10,16 @@ const UsersModules = require("./usersmodules");
 const UserTasks = require("./usertasks");
 
 Users.hasMany(SocialNetworks, { foreignKey: "user_id" });
-SocialNetworks.belongsTo(Users, { foreignKey: "user_id" });
+// SocialNetworks.belongsTo(Users, { foreignKey: "user_id" });
 
-Statuses.hasMany(UserTasks, { foreignKey: "status_id" });
-UserTasks.belongsTo(Statuses, { foreignKey: "status_id" });
+UserTasks.hasOne(Statuses, { foreignKey: "status_id" });
+Statuses.belongsTo(UserTasks, { foreignKey: "status_id" });
 
-Users.belongsToMany(Tasks, { through: "UserTasks" });
-Tasks.belongsToMany(Users, { through: "UserTasks" });
+Users.belongsToMany(Tasks, { through: "userTasks" });
+Tasks.belongsToMany(Users, { through: "userTasks" });
 
-Users.belongsToMany(Modules, { through: "UsersModules" });
-Modules.belongsToMany(Users, { through: "UsersModules" });
+Users.belongsToMany(Modules, { through: "usersModules" });
+Modules.belongsToMany(Users, { through: "usersModules" });
 
 Modules.hasMany(Tasks, { foreignKey: "module_id" });
 Tasks.belongsTo(Modules, { foreignKey: "module_id" });
@@ -30,10 +30,10 @@ Checklists.belongsTo(Modules, { foreignKey: "module_id" });
 Modules.hasMany(Themes, { foreignKey: "module_id" });
 Themes.belongsTo(Modules, { foreignKey: "module_id" });
 
-Checklists.belongsToMany(Themes, { through: "ThemesChecklist" });
-Themes.belongsToMany(Checklists, { through: "ThemesChecklist" });
+Checklists.belongsToMany(Themes, { through: "themesChecklists" });
+Themes.belongsToMany(Checklists, { through: "themesChecklists" });
 
-const _modules = {
+const _models = {
     Checklists,
     Modules,
     SocialNetworks,
@@ -46,4 +46,4 @@ const _modules = {
     UserTasks
 }
 
-module.exports = _modules
+module.exports = _models

@@ -8,3 +8,4 @@ module.exports = new Sequelize(
       dialect: process.env.DIALECT,
     }
   )
+
