@@ -10,19 +10,27 @@ class UserServices {
 
   getUsers() {
     return new Promise((res) => {
-      const users = Users.findAll().then((result) => res(result));
+      Users.findAll().then((result) => res(result));
     });
   }
 
   deleteUser(id) {
-    const result = Users.destroy({where: {id}})
+    Users.destroy({ where: { id } });
   }
 
   updateUser(id, body) {
-    return new Promise ((res) => {
-      const user = Users.update(body, {where: {id}})
-      res(user)
-    })
+    return new Promise((res) => {
+      const user = Users.update(body, { where: { id } });
+      res(user);
+    });
+  }
+
+  getUserById(id) {
+    return new Promise((res) => {
+      Users.findOne({
+        where: { id },
+      }).then((result) => res(result));
+    });
   }
 }
 

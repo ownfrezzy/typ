@@ -6,18 +6,47 @@ const UserControllers = require("../controllers/user.controllers");
  * @swagger
  * /api/users:
  *  get:
- *      description: Используй этот URL для получения всех пользователей
+ *      description: Returns all users from DB
  *      tags:
  *          - Users
  *      responses:
  *          '200':
- *              description: Успешный ответ
+ *              description: Successfull response
  */
 
 router.get("/", async (req, res) => {
   try {
     const users = await UserControllers.getUsers();
     res.send(users);
+  } catch (err) {
+    res.send(err);
+  }
+});
+
+/**
+ * @swagger
+ * /api/users/{id}:
+ *  get:
+ *      summary: Get user with {id}
+ *      tags:
+ *        - Users
+ *      consumes:
+ *        - application/json
+ *      parameters:
+ *        - in: path
+ *          name: id
+ *          required: true
+ *          description: id of user
+ *          type: integer
+ *      responses:
+ *          '200':
+ *              description: Successfull response
+ */
+
+router.get("/:id", async (req, res) => {
+  try {
+    const user = await UserControllers.getUserById(req.params.id);
+    res.send(user);
   } catch (err) {
     res.send(err);
   }
@@ -95,7 +124,7 @@ router.post("/", async (req, res) => {
  * @swagger
  * /api/users/{id}:
  *  put:
- *      summary: Updates a user
+ *      summary: Updates a user with {id}
  *      tags:
  *        - Users
  *      consumes:
