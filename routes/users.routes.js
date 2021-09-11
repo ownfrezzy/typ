@@ -6,6 +6,7 @@ const UserControllers = require("../controllers/user.controllers");
  * @swagger
  * /api/users:
  *  get:
+ *      summary: Get all users
  *      description: Returns all users from DB
  *      tags:
  *          - Users

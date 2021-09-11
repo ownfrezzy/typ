@@ -12,7 +12,7 @@ const Modules = db.define("modules", {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  colour: {
+  color: {
     type: Sequelize.STRING,
     allowNull: false,
   },

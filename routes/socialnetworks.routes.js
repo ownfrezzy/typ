@@ -6,6 +6,7 @@ const SNControllers = require("../controllers/SN.controllers");
  * @swagger
  * /api/socialNetworks/{id}:
  *  get:
+ *      summary: Get all SN of user with {id}
  *      description: Get all social networks from user {id}
  *      tags:
  *          - SocialNetworks
