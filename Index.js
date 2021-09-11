@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 require("dotenv").config();
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 const routes = require("./routes/index");
 const db = require("./config/database");
 const swaggerJsDoc = require("swagger-jsdoc");
@@ -29,7 +29,7 @@ const swaggerOptions = {
 const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
-app.listen(port, () => console.log(`Server started on PORT ${port}`));
+app.listen(process.env.PORT || 3000, () => console.log(`Server started on PORT ${port}`));
 
 db.authenticate()
   .then(() => console.log("DB connected!"))
