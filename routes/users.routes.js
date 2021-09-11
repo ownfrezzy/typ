@@ -56,6 +56,7 @@ router.get("/:id", async (req, res) => {
  * @swagger
  *  /api/users:
  *    post:
+ *      summary: Add new user
  *      description:
  *          Register 'User' object.
  *      tags:
@@ -181,9 +182,9 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deletedUser = await UserControllers.deleteUser(req.params.id);
-    res.send(deletedUser);
+    res.send('deletedUser');
   } catch (err) {
-    res.send(err);
+    res.send('something gone wrong');
   }
 });
 
