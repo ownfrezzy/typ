@@ -10,7 +10,7 @@ const UsersModules = require("./usersModules");
 const UserTasks = require("./userTasks");
 
 Users.hasMany(SocialNetworks, { foreignKey: "user_id" });
-// SocialNetworks.belongsTo(Users, { foreignKey: "user_id" });
+SocialNetworks.belongsTo(Users, { foreignKey: "user_id" });
 
 UserTasks.hasOne(Statuses, { foreignKey: "status_id" });
 Statuses.belongsTo(UserTasks, { foreignKey: "status_id" });

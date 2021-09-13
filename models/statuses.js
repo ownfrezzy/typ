@@ -11,7 +11,7 @@ const Statuses = db.define("statuses", {
   text: {
     type: Sequelize.STRING,
     allowNull: false,
-  },
+  },  
 });
 
 module.exports = Statuses;
