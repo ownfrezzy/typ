@@ -19,7 +19,7 @@ router.use('/checklists', checklistsRoutes )
 router.use('/modules', modulesRoutes )
 //++
 router.use('/socialNetworks', socialNetworksRoutes )
-//~~
+//++
 router.use('/statuses', statusesRoutes )
 //++
 router.use('/tasks', tasksRoutes )
@@ -29,7 +29,7 @@ router.use('/themes', themesRoutes )
 router.use('/themesChecklists', themesChecklistsRoutes )
 //--
 router.use('/usersModules', usersModulesRoutes )
-//--
+//~~
 router.use('/userTasks', userTasksRoutes )
 
 module.exports = router;
