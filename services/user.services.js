@@ -16,14 +16,14 @@ class UserServices {
 
   deleteUser(id) {
     return new Promise((res) => {
-      const result = Users.destroy({where: {id}}).then(result => res(result))
-    })
+      Users.destroy({ where: { id } }).then((result) => res(result));
+    });
   }
 
-//сделать, чтобы возвращало обновленный объект
+  //сделать, чтобы возвращало обновленный объект
   updateUser(id, body) {
     return new Promise((res) => {
-      const user = Users.update(body, { where: { id } }).then(result => res(result));
+      Users.update(body, { where: { id } }).then((result) => res(result));
     });
   }
 

@@ -23,9 +23,9 @@ const SNControllers = require("../controllers/SN.controllers");
 
 router.get("/:id", async (req, res) => {
   try {
-      const {id} = req.params
-      const result = await SNControllers.getSN(id)
-      res.send(result)
+    const { id } = req.params;
+    const result = await SNControllers.getSN(id);
+    res.send(result);
   } catch (err) {
     res.send(err);
   }
@@ -112,8 +112,8 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-      const result = await SNControllers.updateSN(req.params.id, req.body)
-      res.send(result)
+    const result = await SNControllers.updateSN(req.params.id, req.body);
+    res.send(result);
   } catch (err) {
     res.send(err);
   }
@@ -141,10 +141,10 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-      const result = await SNControllers.deleteSN(req.params.id)
-      res.send('Success')
+    const result = await SNControllers.deleteSN(req.params.id);
+    res.send("Success");
   } catch (err) {
-    res.send('Something gone wrong');
+    res.send("Something gone wrong");
   }
 });
 

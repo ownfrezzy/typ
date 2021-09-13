@@ -8,7 +8,7 @@ const ThemesChecklist = require("./themesChecklist");
 const Users = require("./users");
 const UsersModules = require("./usersModules");
 const UserTasks = require("./userTasks");
-
+    
 Users.hasMany(SocialNetworks, { foreignKey: "user_id" });
 SocialNetworks.belongsTo(Users, { foreignKey: "user_id" });
 
