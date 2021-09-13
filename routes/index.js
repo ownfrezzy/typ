@@ -13,7 +13,7 @@ const userTasksRoutes = require('./userTasks.routes')
 
 //++
 router.use('/users', usersRoutes )
-//--
+//~~
 router.use('/checklists', checklistsRoutes )
 //++
 router.use('/modules', modulesRoutes )
@@ -27,7 +27,7 @@ router.use('/tasks', tasksRoutes )
 router.use('/themes', themesRoutes )
 //--
 router.use('/themesChecklists', themesChecklistsRoutes )
-//~~
+//++
 router.use('/usersModules', usersModulesRoutes )
 //++
 router.use('/userTasks', userTasksRoutes )
