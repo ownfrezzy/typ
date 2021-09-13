@@ -49,5 +49,5 @@ db.authenticate()
   .catch((err) => console.log(err));
 
 //снять коммент для синхронизации бд(удалит все данные)
-// db.sync({ force: true }).then(() => console.log('DB synced')).catch((err) => console.log(err))
+db.sync({ force: true }).then(() => console.log('DB synced')).catch((err) => console.log(err))
 app.use("/api", routes);
