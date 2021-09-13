@@ -8,11 +8,11 @@ const ThemesChecklist = require("./themesChecklist");
 const Users = require("./users");
 const UsersModules = require("./usersModules");
 const UserTasks = require("./userTasks");
-    
+
 Users.hasMany(SocialNetworks, { foreignKey: "user_id" });
 SocialNetworks.belongsTo(Users, { foreignKey: "user_id" });
 
-Statuses.hasOne(Statuses);
+Statuses.hasOne(UserTasks);
 UserTasks.belongsTo(Statuses, { foreignKey: "status_id" });
 
 Users.belongsToMany(Tasks, { through: "userTasks" });
@@ -33,17 +33,95 @@ Themes.belongsTo(Modules, { foreignKey: "module_id" });
 Checklists.belongsToMany(Themes, { through: "themesChecklists" });
 Themes.belongsToMany(Checklists, { through: "themesChecklists" });
 
-const _models = {
-    Checklists,
-    Modules,
-    SocialNetworks,
-    Statuses,
-    Tasks,
-    Themes,
-    ThemesChecklist,
-    Users,
-    UsersModules,
-    UserTasks
-}
+// create fake data
+Users.sync({ force: true }).then(function () {
+  return Users.create({
+    login: "example@gmail.com",
+    password: "sobaka",
+    firstName: "Kiryl",
+    lastName: "Sachuk",
+    isAdmin: true,
+  });
+});
 
-module.exports = _models
+Statuses.sync({ force: true}).then(function () {
+    return Statuses.create({
+        text: 'Pending'
+    })
+})
+
+Modules.sync({ force: true }).then(function () {
+  return Modules.create({
+    title: "React",
+    color: "#0000FF",
+  });
+});
+
+Tasks.sync({ force: true }).then(function () {
+  return Tasks.create({
+    module_id: 1,
+    title: "Задача 2",
+    description: `Тролли атакуют ваш раздел комментариев!`,
+  });
+});
+
+UserTasks.sync({force: true}).then(function() {
+    return UserTasks.create({
+        user_id: 1,
+        task_id: 1,
+        status_id: 1,
+        link_github: "https://github.com/ownfrezzy/todo/blob/master/services/todo.services.js#L38"
+    })
+})
+
+SocialNetworks.sync({ force: true }).then(function () {
+  return SocialNetworks.create({
+    telegram: "@liriksachuk",
+    instagram: "@liriksachuk",
+    user_id: 1,
+  });
+});
+
+Themes.sync({ force: true }).then(function () {
+  return Themes.create({
+    title: "Variables",
+    content: "pacvoevk evk erlvwrkv rv j",
+    module_id: 1,
+  });
+});
+
+UsersModules.sync({ force: true }).then(function () {
+  return UsersModules.create({
+    user_id: 1,
+    module_id: 1,
+  });
+});
+
+Checklists.sync({ force: true }).then(function () {
+  return Checklists.create({
+    title: "Чек-лист №1",
+    module_id: 1,
+  });
+});
+
+ThemesChecklist.sync({ force: true }).then(function () {
+  return ThemesChecklist.create({
+    checklist_id: 1,
+    theme_id: 1,
+  });
+});
+
+const _models = {
+  Checklists,
+  Modules,
+  SocialNetworks,
+  Statuses,
+  Tasks,
+  Themes,
+  ThemesChecklist,
+  Users,
+  UsersModules,
+  UserTasks,
+};
+
+module.exports = _models;
