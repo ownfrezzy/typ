@@ -12,8 +12,8 @@ const UserTasks = require("./userTasks");
 Users.hasMany(SocialNetworks, { foreignKey: "user_id" });
 SocialNetworks.belongsTo(Users, { foreignKey: "user_id" });
 
-UserTasks.hasOne(Statuses, { foreignKey: "status_id" });
-Statuses.belongsTo(UserTasks, { foreignKey: "status_id" });
+Statuses.hasOne(Statuses);
+UserTasks.belongsTo(Statuses, { foreignKey: "status_id" });
 
 Users.belongsToMany(Tasks, { through: "userTasks" });
 Tasks.belongsToMany(Users, { through: "userTasks" });
