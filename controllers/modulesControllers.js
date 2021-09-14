@@ -1,4 +1,4 @@
-const ModulesServices = require("../services/modules.services");
+const ModulesServices = require("../services/modulesServices");
 
 class ModulesControllers {
     async getModules() {

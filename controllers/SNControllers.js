@@ -1,4 +1,4 @@
-const SNServices = require("../services/SN.services");
+const SNServices = require("../services/SNServices");
 
 class SNControllers {
   async getSN(id) {

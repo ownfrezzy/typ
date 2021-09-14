@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const SNControllers = require("../controllers/SN.controllers");
+const SNControllers = require("../controllers/SNControllers");
 
 /**
  * @swagger

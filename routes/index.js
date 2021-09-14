@@ -1,15 +1,15 @@
 const express = require('express')
 const router = express.Router()
-const checklistsRoutes = require('./checklists.routes')
-const modulesRoutes = require('./modules.routes')
-const socialNetworksRoutes = require('./socialnetworks.routes')
-const statusesRoutes = require('./statuses.routes')
-const tasksRoutes = require('./tasks.routes')
-const themesRoutes = require('./themes.routes')
-const themesChecklistsRoutes = require('./themeschecklists.routes')
-const usersRoutes = require('./users.routes')
-const usersModulesRoutes = require('./usersModules.routes')
-const userTasksRoutes = require('./userTasks.routes')
+const checklistsRoutes = require('./checklistsRoutes')
+const modulesRoutes = require('./modulesRoutes')
+const socialNetworksRoutes = require('./socialnetworksRoutes')
+const statusesRoutes = require('./statusesRoutes')
+const tasksRoutes = require('./tasksRoutes')
+const themesRoutes = require('./themesRoutes')
+const themesChecklistsRoutes = require('./themeschecklistsRoutes')
+const usersRoutes = require('./usersRoutes')
+const usersModulesRoutes = require('./usersModulesRoutes')
+const userTasksRoutes = require('./userTasksRoutes')
 
 //++
 router.use('/users', usersRoutes )
@@ -25,7 +25,7 @@ router.use('/statuses', statusesRoutes )
 router.use('/tasks', tasksRoutes )
 //++
 router.use('/themes', themesRoutes )
-//~~
+//++
 router.use('/themesChecklists', themesChecklistsRoutes )
 //++
 router.use('/usersModules', usersModulesRoutes )
