@@ -107,7 +107,7 @@ const usersModulesControllers = require('../controllers/userModulesControllers.j
    *          required: true
    *          description: Object to update
    *          schema:
-   *              $ref: '#/definitions/UsersModule'
+   *              $ref: '#/definitions/UsersModules'
    *      responses:
    *          '200':
    *              description: Successfull response

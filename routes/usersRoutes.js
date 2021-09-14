@@ -55,7 +55,7 @@ router.get("/:id", async (req, res) => {
 
 /**
  * @swagger
- *  /api/users:
+ *  /api/users/register:
  *    post:
  *      summary: Add new user
  *      description:
@@ -113,7 +113,7 @@ router.get("/:id", async (req, res) => {
  *      - isAdmin
  */
 
-router.post("/", async (req, res) => {
+router.post("/register", async (req, res) => {
   try {
     const newUser = await UserControllers.addUser(req.body);
     res.send(newUser);

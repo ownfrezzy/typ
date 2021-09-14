@@ -3,7 +3,6 @@ const db = require("../config/database");
 const Modules = require("./modules");
 const Users = require("./users");
 
-
 const UsersModules = db.define("usersModules", {
   id: {
     type: Sequelize.INTEGER,
@@ -13,17 +12,17 @@ const UsersModules = db.define("usersModules", {
   },
   user_id: {
     type: Sequelize.INTEGER,
-    references:{
+    references: {
       model: Users,
-      key: 'id'
+      key: "id",
     },
     allowNull: false,
   },
   module_id: {
     type: Sequelize.INTEGER,
-    references:{
+    references: {
       model: Modules,
-      key: 'id'
+      key: "id",
     },
     allowNull: false,
   },
