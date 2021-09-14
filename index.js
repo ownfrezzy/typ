@@ -44,6 +44,18 @@ app.use(function (req, res, next) {
 
 app.listen(port, () => console.log(`Server started on PORT ${port}`));
 
+// db.sync({force:true})
+
+console.table([
+  { name: "SERVER PORT", value: port },
+  { name: "DB_PORT", value: process.env.DB_PORT },
+  { name: "DB_HOST", value: process.env.HOST },
+  { name: "DB_NAME", value: process.env.DATABASE },
+  { name: "DB_USER", value: process.env.DB_USER },
+]);
+
+
+
 db.authenticate()
   .then(() => console.log("DB connected!"))
   .catch((err) => console.log(err));

@@ -4,7 +4,7 @@ const SocialNetworks = require("./socialNetworks");
 const Statuses = require("./statuses");
 const Tasks = require("./tasks");
 const Themes = require("./themes");
-const ThemesChecklist = require("./themesChecklist");
+const themesChecklist = require("./themesChecklist");
 const Users = require("./users");
 const UsersModules = require("./usersModules");
 const UserTasks = require("./userTasks");
@@ -30,8 +30,8 @@ Checklists.belongsTo(Modules, { foreignKey: "module_id" });
 Modules.hasMany(Themes, { foreignKey: "module_id" });
 Themes.belongsTo(Modules, { foreignKey: "module_id" });
 
-Checklists.belongsToMany(Themes, { through: "themesChecklists" });
-Themes.belongsToMany(Checklists, { through: "themesChecklists" });
+Checklists.belongsToMany(Themes, { through: "themesChecklist" });
+Themes.belongsToMany(Checklists, { through: "themesChecklist" });
 
 // create fake data
 // Users.sync({ force: true }).then(function () {
@@ -104,12 +104,14 @@ Themes.belongsToMany(Checklists, { through: "themesChecklists" });
 //   });
 // });
 
-// ThemesChecklist.sync({ force: true }).then(function () {
-//   return ThemesChecklist.create({
+// themesChecklist.sync({ force: true }).then(function () {
+//   return themesChecklist.create({
 //     checklist_id: 1,
 //     theme_id: 1,
 //   });
 // });
+
+
 
 const _models = {
   Checklists,
@@ -118,7 +120,7 @@ const _models = {
   Statuses,
   Tasks,
   Themes,
-  ThemesChecklist,
+  themesChecklist,
   Users,
   UsersModules,
   UserTasks,
