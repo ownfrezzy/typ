@@ -26,6 +26,9 @@ To run the app execute
 
 http://localhost:3030/api-docs/
 
+https://typ-redev.herokuapp.com/api-docs/
+
+
 ## PostreSQL
 
 ~/config/database.js
