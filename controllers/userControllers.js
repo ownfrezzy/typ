@@ -6,8 +6,8 @@ class UserControllers {
     return users;
   }
 
-  async addUser(body) {
-    const user = await userServices.addUser(body);
+  async register(body) {
+    const user = await userServices.register(body);
     return user;
   }
 
@@ -24,6 +24,11 @@ class UserControllers {
   async getUserById(id) {
     const user = await userServices.getUserById(id);
     return user;
+  }
+
+  async login(body) {
+    const token = await userServices.login(body);
+    return token
   }
 }
 

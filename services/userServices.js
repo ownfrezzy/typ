@@ -1,10 +1,29 @@
 const { Users, Modules, SocialNetworks } = require("../models/_models");
+const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
+const salt = 5;
+const generateAceessToken  = (login, id, isAdmin) => {
+  const payload = {
+    id,
+    login,
+    isAdmin
+  };
+  return jwt.sign(payload, process.env.SECRET_PHRASE);
+};
 
 class UserServices {
-  addUser(body) {
-    return new Promise((res) => {
-      const newUser = Users.create(body);
-      res(newUser);
+   async register(body) {
+    let { login, password, firstName, lastName, isAdmin } = body;
+    const hashedPassword = await bcrypt.hash(password, salt);
+    console.log(hashedPassword)
+    return new Promise(async (res) => {
+      let candidate = await Users.findOne({where: {login}}).then();
+      if (candidate) {
+        res("User with this login already exists");
+      } else {
+        const newUser = Users.create({...body, password: hashedPassword});
+        res(newUser);
+      }
     });
   }
 
@@ -33,6 +52,28 @@ class UserServices {
         where: { id },
       }).then((result) => res(result));
     });
+  }
+
+  async login(body) {
+    return new Promise(async (res, rej) => {
+      const {login, password} = body
+      const user = await Users.findOne({
+        where:{login}
+      });
+      if (!user) {
+        res('User undefined')
+      } else {
+        console.log(user.dataValues.password)
+        const validPassword = bcrypt.compare(password, user.dataValues.password, function (err, result){
+          if (result){
+            const token = generateAceessToken(login, user.dataValues.id, user.dataValues.isAdmin)
+            res(token)
+          } else {
+            rej('wrong password')
+          }
+        })
+      }
+    })
   }
 }
 

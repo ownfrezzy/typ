@@ -1,4 +1,5 @@
 const express = require("express");
+const userControllers = require("../controllers/userControllers");
 const router = express.Router();
 const UserControllers = require("../controllers/userControllers");
 
@@ -106,7 +107,7 @@ router.get("/:id", async (req, res) => {
  *         example: false
  *         description: admin or user
  *     required:
- *      - title
+ *      - login
  *      - password
  *      - firstName
  *      - lastName
@@ -115,7 +116,7 @@ router.get("/:id", async (req, res) => {
 
 router.post("/register", async (req, res) => {
   try {
-    const newUser = await UserControllers.addUser(req.body);
+    const newUser = await UserControllers.register(req.body);
     res.send(newUser);
   } catch (err) {
     res.send(err);
@@ -183,9 +184,63 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const deletedUser = await UserControllers.deleteUser(req.params.id);
-    res.send('deletedUser');
+    res.send("deletedUser");
   } catch (err) {
-    res.send('something gone wrong');
+    res.send("something gone wrong");
+  }
+});
+
+/**
+ * @swagger
+ *  /api/users/login:
+ *    post:
+ *      summary: Login as a user
+ *      description:
+ *          Login route.
+ *      tags:
+ *          - Users
+ *      parameters:
+ *        - name: user
+ *          in: body
+ *          description: login object
+ *          required: true
+ *          schema:
+ *            $ref: '#/definitions/Login'
+ *      responses:
+ *        200:
+ *          description: Successful response
+ *          schema:
+ *              title: Return String
+ *              type: string
+ *              example: "Section added succesfully"
+ *        500:
+ *          description: Error
+ *          schema:
+ *            type: string
+ *            example: "Could not add Section"
+ * definitions:
+ *   Login:
+ *     description: Login object
+ *     properties:
+ *       login:
+ *         type: string
+ *         example: example@example.com
+ *         description: login for user
+ *       password:
+ *         type: string
+ *         example: 123123
+ *         description: password for user
+ *     required:
+ *      - login
+ *      - password
+ */
+
+router.use("/login", async (req, res) => {
+  try {
+    let token = await UserControllers.login(req.body);
+    res.send(token)
+  } catch (err) {
+    res.send(err);
   }
 });
 
