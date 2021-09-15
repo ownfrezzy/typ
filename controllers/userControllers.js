@@ -28,7 +28,7 @@ class UserControllers {
 
   async login(body) {
     const token = await userServices.login(body);
-    return token
+    return token;
   }
 }
 

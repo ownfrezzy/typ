@@ -238,7 +238,7 @@ router.delete("/:id", async (req, res) => {
 router.use("/login", async (req, res) => {
   try {
     let token = await UserControllers.login(req.body);
-    res.send(token)
+    res.send(token);
   } catch (err) {
     res.send(err);
   }
