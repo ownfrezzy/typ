@@ -13,18 +13,22 @@ const generateAceessToken = (login, id, isAdmin) => {
 
 class UserServices {
   async register(body) {
-    let { login, password, firstName, lastName, isAdmin } = body;
-    const hashedPassword = await bcrypt.hash(password, salt);
-    console.log(hashedPassword);
-    return new Promise(async (res) => {
-      let candidate = await Users.findOne({ where: { login } }).then();
-      if (candidate) {
-        res("User with this login already exists");
-      } else {
-        const newUser = Users.create({ ...body, password: hashedPassword });
-        res(newUser);
-      }
-    });
+    try {
+      let { login, password, firstName, lastName, isAdmin } = body;
+      const hashedPassword = await bcrypt.hash(password, salt);
+      console.log(hashedPassword);
+      return new Promise(async (res) => {
+        let candidate = await Users.findOne({ where: { login } }).then();
+        if (candidate) {
+          res("User with this login already exists");
+        } else {
+          const newUser = Users.create({ ...body, password: hashedPassword });
+          res(newUser);
+        }
+      });
+    } catch {
+      if (err) throw err;
+    }
   }
 
   getUsers() {
@@ -39,18 +43,25 @@ class UserServices {
     });
   }
 
-  //сделать, чтобы возвращало обновленный объект
+  //сделать, чтобы возвращало обновленный объект. DONE!
   updateUser(id, body) {
-    return new Promise((res) => {
-      Users.update(body, { where: { id } }).then((result) => res(result));
+    return new Promise(async (res) => {
+      await Users.update(body, { where: { id } });
+      await Users.findOne({
+        where:{id}
+      }).then(result => res(result))
     });
   }
 
   getUserById(id) {
     return new Promise((res) => {
-      Users.findOne({
-        where: { id },
-      }).then((result) => res(result));
+      try {
+        const user = Users.findOne({
+          where: { id },
+        }).then((result) => res(result));
+      } catch {
+        if (err) throw err;
+      }
     });
   }
 

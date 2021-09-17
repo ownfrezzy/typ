@@ -61,3 +61,5 @@ db.authenticate()
   .catch((err) => console.log(err));
 
 app.use("/api", routes);
+
+module.exports = app

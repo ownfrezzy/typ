@@ -46,12 +46,12 @@ router.get("/", async (req, res) => {
  */
 
 router.get("/:id", async (req, res) => {
-  try {
     const user = await UserControllers.getUserById(req.params.id);
-    res.send(user);
-  } catch (err) {
-    res.send(err);
-  }
+    if (!user) {
+      res.sendStatus(404);
+    } else {
+      res.send(user);
+    }
 });
 
 /**
@@ -119,7 +119,7 @@ router.post("/register", async (req, res) => {
     const newUser = await UserControllers.register(req.body);
     res.send(newUser);
   } catch (err) {
-    res.send(err);
+    res.sendStatus(500);
   }
 });
 
